@@ -3,61 +3,27 @@ package org.example.code;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FinalExample {
+/**\
+ * refacorizando
+ * 1. extraendo sub clases
+ * 2. darle una unica responsabilidad
+ *
+ */
+public class FinalExample { // ahora esta clase solo llama a los metodo de las clases
 
-    public List<String> processData(String input) {
-        List<String> data = new ArrayList<>();
-        String[] parts = input.split(",");
-        for (String part : parts) {
-            part = part.trim();
-            if (part.length() > 0) {
-                if (part.length() > 10) {
-                    part = part.substring(0, 10);
-                }
-                if (part.matches("[a-zA-Z]+")) {
-                    data.add(part.toUpperCase());
-                }
-            }
-        }
+    private Claculation claculation;
+    private ProcessData processData;
+    private UserControll userControll;
+    private Order order;
+    private ReportGenerator reportGenerator;
 
-        System.out.println("Data processed:");
-        for (String item : data) {
-            System.out.println("- " + item);
-        }
-
-        System.out.println("Total items:");
-        for (String item : data) {
-            System.out.println("- " + item);
-        }
-
-        return data;
+    public FinalExample(Claculation claculation, ProcessData processData, UserControll userControll) {
+        this.claculation = claculation;
+        this.processData = processData;
+        this.userControll = userControll;
     }
 
-    public String createUser(String name, String email, String phone,
-                             String address, String city, String zip) {
-        // Validation logic mixed with creation
-        if (name == null || name.isEmpty()) {
-            return "Name cannot be empty";
-        }
-        if (email == null || !email.contains("@")) {
-            return "Invalid email";
-        }
-        // ... more validations
+    public FinalExample(){
 
-        return "User created: " + name;
-    }
-
-
-    public double calculateArea(String shape, double... dimensions) {
-        switch (shape) {
-            case "circle":
-                return Math.PI * dimensions[0] * dimensions[0];
-            case "rectangle":
-                return dimensions[0] * dimensions[1];
-            case "triangle":
-                return dimensions[0] * dimensions[1] / 2;
-            default:
-                throw new IllegalArgumentException("Unknown shape");
-        }
     }
 }
